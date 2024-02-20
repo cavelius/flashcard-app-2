@@ -3,8 +3,11 @@ import Link from "next/link";
 export default function Course({ name, description, id }) {
   return (
     <article>
+      <button>
+        <Link href="/courses/${id}/edit-and-delete">...</Link>
+      </button>
       <div>
-        <h1>{name}</h1>
+        <h1>course: {name}</h1>
       </div>
       <p> Description: {description}</p>
       <button>

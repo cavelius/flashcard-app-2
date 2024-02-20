@@ -5,8 +5,17 @@
 
 body {
   box-sizing: border-box;
-  margin: 30px;
+  margin: 0;
+  padding: 0;
   font-family: "DM Sans";
+}
+
+.homepage {
+  margin: 30px;
+}
+
+.create-course {
+  background-color: blue;
 }
 
 .logobox {
@@ -29,4 +38,61 @@ body {
   font-family: "DM Sans";
   font-weight: 900;
   text-transform: uppercase;
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+.course-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.formfield-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin: 0 30px 0 30px;
+}
+
+.field {
+  border: 1px solid black;
+  border-radius: 30px;
+  width: 80%;
+  height: 150px;
+  list-style: none;
+  padding: 0;
+  margin-bottom: 10px;
+  padding: 10%;
+  justify-self: center;
+  align-self: center;
+  background-color: white;
+}
+
+ul {
+  padding: 0;
+}
+
+.navigation {
+  display: flex;
+  justify-content: center; /* Horizontal zentrieren */
+  align-items: center; /* Vertikal zentrieren */
+  background-color: black;
+  border-radius: 30px;
+  height: 40px;
+  position: fixed;
+  bottom: 30px;
+  left: 30px; /* 30px Abstand von der linken Seite des Bildschirms */
+  right: 30px;
+}
+
+.navigation-text {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 100;
+  font-size: 22px;
+  text-decoration: none;
+  color: white;
+  display: flex;
+  margin-top: 18px;
 }
