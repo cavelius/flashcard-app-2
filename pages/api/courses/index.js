@@ -17,6 +17,12 @@ export default async function handler(request, response) {
     return response
       .status(200)
       .json({ success: true, status: "Course created" });
+  }
+
+  // Daten von Datenbank bearbeiten
+  if (request.method === "PUT") {
+    const courseToUpdate = await Course.findByIdAndUpdate(id, request.body);
+    response.status(200).json(courseToUpdate);
   } else {
     return response.status(405).json({ message: "Method not allowed" });
   }

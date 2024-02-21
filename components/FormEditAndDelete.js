@@ -1,6 +1,11 @@
 import Link from "next/link";
 
-export default function FormEditAndDelete({ onSubmit, formName, defaultData }) {
+export default function FormEditAndDelete({
+  onClick,
+  onSubmit,
+  formName,
+  defaultData,
+}) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
@@ -41,6 +46,7 @@ export default function FormEditAndDelete({ onSubmit, formName, defaultData }) {
           <button>
             <Link href="/">cancel</Link>
           </button>
+          <button onClick={onClick}>delete</button>
         </form>
       </div>
     </>

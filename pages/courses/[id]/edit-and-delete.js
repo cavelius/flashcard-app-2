@@ -1,14 +1,22 @@
 import { useRouter } from "next/router";
-import FormEditAndDelete from "@/components/Form-add";
+import FormEditAndDelete from "@/components/FormEditAndDelete";
+import useSWR from "swr";
 
 export default function EditAndDeleteCourse() {
   const router = useRouter();
-  console.log("router:", router);
+  const { isReady } = router;
+  const { id } = router.query;
+  const {
+    data: course,
+    isLoading,
+    error,
+    mutate,
+  } = useSWR(`/api/courses/${id}`);
 
-  // erstellt einen neuen Course
-  async function addCourse(course) {
-    const response = await fetch(`/api/courses`, {
-      method: "POST",
+  // unpdate Entry
+  async function editCourse(course) {
+    const response = await fetch(`/api/courses/${id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
@@ -16,16 +24,39 @@ export default function EditAndDeleteCourse() {
     });
 
     if (response.ok) {
-      await response.json();
-      router.push("/");
+      mutate();
+      router.back();
     } else {
-      console.error(`Error: ${response.status}`);
+      alert("There was a Error");
     }
   }
+
+  if (!isReady || isLoading) return <h2>Loading...</h2>;
+  if (error) return <h2>Error! 🔥</h2>;
+
+  async function deleteCourse() {
+    if (confirm(`Are you sure that you want to delete this course?`) == true) {
+      const response = await fetch(`/api/courses/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        router.back;
+      } else {
+        alert(`There was a Error ${response.status}`);
+      }
+    }
+  }
+
   return (
     <>
       <div id="add-place" className="create-course">
-        <FormEditAndDelete onSubmit={addCourse} formName={"add-place"} />
+        <FormEditAndDelete
+          onSubmit={editCourse}
+          formName={"add-place"}
+          defaultData={course}
+          onClick={deleteCourse}
+        />
       </div>
     </>
   );

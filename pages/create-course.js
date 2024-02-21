@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import Form from "@/components/Form-add";
+import Form from "@/components/FormAdd";
 
 export default function CreateCourse() {
   const router = useRouter();
