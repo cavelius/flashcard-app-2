@@ -6,13 +6,13 @@ export default function CreateCourse() {
   console.log("router:", router);
 
   // erstellt einen neuen Course
-  async function addCourse(course) {
+  async function addCourse(courseData) {
     const response = await fetch(`/api/courses`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(course),
+      body: JSON.stringify(courseData),
     });
 
     if (response.ok) {

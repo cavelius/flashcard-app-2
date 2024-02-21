@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Course from "../components/Course";
 import useSWR from "swr";
-import Form from "@/components/FormAdd";
 
 // START FRONTEND
 
