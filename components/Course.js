@@ -14,9 +14,6 @@ export default function Course({ name, description, id }) {
         <Link href={`/courses/${id}`} passHref>
           Cards
         </Link>
-        {/* <Link href={`/courses/${id}/edit`} passHref>
-          <button>Edit</button>
-        </Link> */}
       </button>
     </article>
   );
