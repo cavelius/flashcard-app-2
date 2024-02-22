@@ -21,9 +21,11 @@ export default function CourseOverviev() {
   return (
     <>
       <div className="homepage">
-        <div className="logobox">
-          <h1 className="logoschrift">flashcards</h1>
-        </div>
+        <Link href={`/`} passHref legacyBehavior>
+          <div className="logobox">
+            <h1 className="logoschrift">flashcards</h1>
+          </div>
+        </Link>
         <div>
           <p className="page-description">your Cards</p>
         </div>

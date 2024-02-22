@@ -1,17 +1,19 @@
 import Link from "next/link";
 
-export default function FormEditAndDelete({
+export default function FormEditAndDeleteCard({
   onClick,
   onSubmit,
   formName,
   defaultData,
+  courseId,
 }) {
   function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     onSubmit(data);
-    console.log("data von Formfield", data);
+    console.log("data von Formfield FromEditAndDeleteCard", data);
+    console.log("question", question);
   }
   return (
     <>
@@ -21,32 +23,31 @@ export default function FormEditAndDelete({
           aria-labelledby={formName}
           onSubmit={handleSubmit}
         >
-          <h1 className="page-description"> Edit Course</h1>
-          <label htmlFor="name">Name</label>
+          <h1 className="page-description">Edit Card</h1>
+          <label htmlFor="question">Question</label>
           <br></br>
           <input
-            id="name"
-            name="name"
+            id="question"
+            name="question"
             type="text"
-            defaultValue={defaultData?.name}
+            defaultValue={defaultData?.question}
           />
           <br></br>
-          <label htmlFor="description">Description</label>
+          <label htmlFor="answer">Answer</label>
           <br></br>
           <input
-            name="description"
-            id="description"
-            cols="30"
-            rows="10"
-            defaultValue={defaultData?.description}
+            name="answer"
+            id="answer"
+            type="text"
+            defaultValue={defaultData?.answer}
           />
           <br></br>
-          <button type="submit">update</button>
+          <button type="submit">Update</button>
           <br></br>
           <button>
-            <Link href="/">cancel</Link>
+            <Link href={`/courses/${courseId}`}>Cancel</Link>
           </button>
-          <button onClick={onClick}>delete</button>
+          <button onClick={onClick}>Delete</button>
         </form>
       </div>
     </>

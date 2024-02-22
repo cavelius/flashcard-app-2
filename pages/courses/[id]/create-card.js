@@ -5,14 +5,14 @@ import useSWR from "swr";
 export default function CreateCard() {
   const router = useRouter();
   const { id } = router.query;
-  const { data, mutate } = useSWR(`/api/courses/${id}`);
+  const { data, mutate } = useSWR(`/api/courses/${id}/cards`);
 
   console.log("data:", data);
 
   // Neue Card erstellen
   async function addCard(cardData) {
     console.log(cardData);
-    const response = await fetch(`/api/courses/${id}`, {
+    const response = await fetch(`/api/courses/${id}/cards`, {
       method: "POST",
       body: JSON.stringify(cardData),
       headers: {
