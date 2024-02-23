@@ -19,20 +19,17 @@ export default function StartQuiz() {
   const question = currentCard.question;
   const answer = currentCard.answer;
 
+  if (!course) return;
   // Funktion zum Umschalten des Toggles
   const toggle = () => {
     setIsToggled((prevState) => !prevState); // Umschalten des Zustands zwischen Frage und Antwort
   };
 
   const handleNextCardRightAnswer = () => {
-    if (currentCardIndex < course.cards.length - 1) {
+    if (currentCardIndex < course?.cards.length - 1) {
       setCurrentCardIndex(currentCardIndex + 1);
       setIsToggled(true); // setzt den Toggle wieder auf die Frage
       setRightAnswers([...rightAnswers, currentCard]); // Fügt die aktuelle Karte den richtigen Antworten hinzu
-      console.log(
-        "current Card to push ############################",
-        currentCard
-      );
     } else {
       setRightAnswers([...rightAnswers, currentCard]); // Fügt die aktuelle Karte den richtigen Antworten hinzu
       router.push({
