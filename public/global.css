@@ -87,6 +87,19 @@ ul {
   right: 30px;
 }
 
+.navigation-start-quiz {
+  display: flex;
+  justify-content: center; /* Horizontal zentrieren */
+  align-items: center; /* Vertikal zentrieren */
+  background-color: black;
+  border-radius: 30px;
+  height: 40px;
+  position: fixed;
+  bottom: 80px;
+  left: 30px; /* 30px Abstand von der linken Seite des Bildschirms */
+  right: 30px;
+}
+
 .navigation-text {
   font-family: "Space Grotesk", sans-serif;
   font-weight: 100;

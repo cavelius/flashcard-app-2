@@ -36,6 +36,11 @@ export default function CourseOverviev() {
           <p className="navigation-text">create card</p>
         </Link>
       </div>
+      <div className="navigation-start-quiz">
+        <Link href={`/courses/${id}/start-quiz`} passHref legacyBehavior>
+          <p className="navigation-text">start quiz</p>
+        </Link>
+      </div>
     </>
   );
 }
