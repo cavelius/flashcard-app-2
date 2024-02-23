@@ -1,6 +1,7 @@
 import { useState } from "react";
 import useSWR from "swr";
 import { useRouter } from "next/router.js";
+import Link from "next/link";
 
 export default function StartQuiz() {
   const router = useRouter();
@@ -32,6 +33,16 @@ export default function StartQuiz() {
         "current Card to push ############################",
         currentCard
       );
+    } else {
+      setRightAnswers([...rightAnswers, currentCard]); // Fügt die aktuelle Karte den richtigen Antworten hinzu
+      router.push({
+        pathname: `/courses/${id}/finish-quiz`,
+        //nimt die infos mit zur nächsten Seite:
+        query: {
+          rightAnswers: JSON.stringify(rightAnswers),
+          wrongAnswers: JSON.stringify(wrongAnswers),
+        },
+      });
     }
   };
   const handleNextCardWrongAnswer = () => {
@@ -40,6 +51,15 @@ export default function StartQuiz() {
       setIsToggled(true); // setzt den Toggle wieder auf die Frage
       setWrongAnswers([...wrongAnswers, currentCard]); // Fügt die aktuelle Karte den richtigen Antworten hinzu
       console.log("current wrong Card to push ------------------", currentCard);
+    } else {
+      setWrongAnswers([...wrongAnswers, currentCard]); // Fügt die aktuelle Karte den richtigen Antworten hinzu
+      router.push({
+        pathname: `/courses/${id}/finish-quiz`,
+        query: {
+          rightAnswers: JSON.stringify(rightAnswers),
+          wrongAnswers: JSON.stringify(wrongAnswers),
+        },
+      });
     }
   };
 
@@ -71,16 +91,6 @@ export default function StartQuiz() {
           </button>
         </div>
       )}
-      <p>I knew the Answers:</p>
-      <ul>
-        {rightAnswers.map((item) => (
-          <li key={item._id}>
-            <p>ID: {item._id}</p>
-            <p>Question: {item.question}</p>
-            <p>Answer: {item.answer}</p>
-          </li>
-        ))}
-      </ul>
     </div>
   );
 }
