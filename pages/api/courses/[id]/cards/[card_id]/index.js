@@ -7,7 +7,6 @@ import Card from "@/db/models/Card";
 export default async function handler(request, response) {
   // ist das gleiche wie:
   // const id = request.query.id;
-  console.log("###################", request.query);
   const { id, card_id } = request.query;
 
   try {
