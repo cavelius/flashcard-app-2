@@ -1,5 +1,3 @@
-// import GlobalStyle from "../styles.js";
-import global from "../public/global.css";
 import { SWRConfig } from "swr";
 import Layout from "../components/Layout.js";
 import "../public/global.css";

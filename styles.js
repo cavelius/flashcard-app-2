@@ -8,7 +8,7 @@
 //   }
 
 //   body {
-//     margin: 0;
+//     margin: 30 px;
 //     font-family: system-ui;
 //   }
 // `;

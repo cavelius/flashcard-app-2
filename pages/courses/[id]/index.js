@@ -2,6 +2,7 @@ import { useRouter } from "next/router.js";
 import useSWR from "swr";
 import Cards from "../../../components/Cards";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 
 // 1 Unterseite YOUR CARDS
 
@@ -20,15 +21,9 @@ export default function CourseOverviev() {
 
   return (
     <>
-      <div className="homepage">
-        <Link href={`/`} passHref legacyBehavior>
-          <div className="logobox">
-            <h1 className="logoschrift">flashcards</h1>
-          </div>
-        </Link>
-        <div>
-          <p className="page-description">your Cards</p>
-        </div>
+      <Logo />
+      <div>
+        <p className="page-description">your Cards</p>
         <Cards />
       </div>
       <div className="navigation">
