@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
+import Link from "next/link";
 
 export default function FinishQuizPage() {
   const router = useRouter();
@@ -21,25 +22,28 @@ export default function FinishQuizPage() {
     }
   }, [rightAnswers, wrongAnswers]);
 
-  console.log("right Answers:", rightAnswers);
-  console.log("wrong Answers:", wrongAnswers);
+  if (!course || !course.cards) return null;
+
+  console.log("right Answers:", JSON.parse(rightAnswers));
+  console.log("wrong Answers:", JSON.parse(wrongAnswers));
   console.log("Course", course);
+
+  const wrong = JSON.parse(wrongAnswers);
+  console.log("worooooong:", wrong);
+
   return (
-    <div>
-      <h1>Finish Quiz Page</h1>
-      <h2>Right Answers:</h2>
-      <ul>
-        {parsedRightAnswers.map((answerObj, index) => (
-          <li key={index}>{answerObj.question}</li>
-        ))}
-      </ul>
-      <h2>Wrong Answers:</h2>
-      <ul>
-        {parsedWrongAnswers.map((answerObj, index) => (
-          <li key={index}>{answerObj.answer}</li>
-        ))}
-      </ul>
-      {wrongAnswers}
-    </div>
+    <>
+      <div>
+        <h1>Finish Quiz Page</h1>
+        <h2>Right Answers:</h2>
+        {parsedRightAnswers.length}
+        <h2>Wrong Answers:</h2>
+        {parsedWrongAnswers.length}
+      </div>
+      <button>redo wrong answers</button>
+      <Link href={`/`} passHref legacyBehavior>
+        finish quiz
+      </Link>
+    </>
   );
 }
