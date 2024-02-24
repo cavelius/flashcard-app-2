@@ -29,7 +29,21 @@ export default function FinishQuizPage() {
   console.log("Course", course);
 
   const wrong = JSON.parse(wrongAnswers);
-  console.log("worooooong:", wrong);
+  const right = JSON.parse(rightAnswers);
+
+  console.log("wrong Answers from finish quiz:", wrong);
+  console.log("right Answers from finish quiz:", right);
+
+  // Funktion zum Abschließen des Quiz
+  const redohQuiz = () => {
+    router.push({
+      pathname: `/courses/${id}/redo-wrong-answers`,
+      query: {
+        wrong: JSON.stringify(wrong),
+        right: JSON.stringify(right),
+      },
+    });
+  };
 
   return (
     <>
@@ -40,7 +54,7 @@ export default function FinishQuizPage() {
         <h2>Wrong Answers:</h2>
         {parsedWrongAnswers.length}
       </div>
-      <button>redo wrong answers</button>
+      <button onClick={redohQuiz}>redo wrong answers</button>
       <Link href={`/`} passHref legacyBehavior>
         finish quiz
       </Link>
