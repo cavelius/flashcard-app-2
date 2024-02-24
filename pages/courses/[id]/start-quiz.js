@@ -20,16 +20,17 @@ export default function StartQuiz() {
   const handleNextCardRightAnswer = () => {
     if (currentCardIndex < course?.cards.length - 1) {
       const currentCard = course.cards[currentCardIndex];
-      setCurrentCardIndex(currentCardIndex + 1);
+      setRightAnswers((prevRightAnswers) => [...prevRightAnswers, currentCard]);
+      setCurrentCardIndex((prevIndex) => prevIndex + 1);
       setIsToggled(true);
-      setRightAnswers([...rightAnswers, currentCard]);
     } else {
       const currentCard = course.cards[currentCardIndex];
-      setRightAnswers([...rightAnswers, currentCard]);
+      const updatedRightAnswers = [...rightAnswers, currentCard];
+      setRightAnswers(updatedRightAnswers);
       router.push({
         pathname: `/courses/${id}/finish-quiz`,
         query: {
-          rightAnswers: JSON.stringify(rightAnswers),
+          rightAnswers: JSON.stringify(updatedRightAnswers),
           wrongAnswers: JSON.stringify(wrongAnswers),
         },
       });
@@ -39,18 +40,18 @@ export default function StartQuiz() {
   const handleNextCardWrongAnswer = () => {
     if (currentCardIndex < course.cards.length - 1) {
       const currentCard = course.cards[currentCardIndex];
-      setCurrentCardIndex(currentCardIndex + 1);
+      setWrongAnswers((prevWrongAnswers) => [...prevWrongAnswers, currentCard]);
+      setCurrentCardIndex((prevIndex) => prevIndex + 1);
       setIsToggled(true);
-      setWrongAnswers([...wrongAnswers, currentCard]);
-      console.log("current wrong Card to push ------------------", currentCard);
     } else {
       const currentCard = course.cards[currentCardIndex];
-      setWrongAnswers([...wrongAnswers, currentCard]);
+      const updatedWrongAnswers = [...wrongAnswers, currentCard];
+      setWrongAnswers(updatedWrongAnswers);
       router.push({
         pathname: `/courses/${id}/finish-quiz`,
         query: {
           rightAnswers: JSON.stringify(rightAnswers),
-          wrongAnswers: JSON.stringify(wrongAnswers),
+          wrongAnswers: JSON.stringify(updatedWrongAnswers),
         },
       });
     }
@@ -61,7 +62,9 @@ export default function StartQuiz() {
 
   return (
     <div>
-      <p>{isToggled ? question : answer}</p>
+      <p> Course: {course.name}</p>
+      {currentCardIndex + 1} Card from {course.cards.length}
+      <p>{isToggled ? `question: ${question}` : `answer: ${answer}`}</p>
       <button onClick={toggle}>
         {isToggled ? "show answer" : "show question"}
       </button>
