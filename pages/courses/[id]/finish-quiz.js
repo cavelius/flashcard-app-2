@@ -22,6 +22,8 @@ export default function FinishQuizPage() {
     }
   }, [rightAnswers, wrongAnswers]);
 
+  if (!course || !course.cards) return null;
+
   console.log("right Answers:", JSON.parse(rightAnswers));
   console.log("wrong Answers:", JSON.parse(wrongAnswers));
   console.log("Course", course);
