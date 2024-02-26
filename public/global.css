@@ -67,6 +67,12 @@ p {
   padding-top: 0;
   margin-top: 5px;
 }
+.quiz-container {
+  display: flex;
+  flex-direction: column;
+  padding-top: 0;
+  margin-top: 5px;
+}
 
 .field {
   border: 1px solid black;
@@ -130,6 +136,12 @@ p {
   font-weight: 400;
 }
 
+.quiz-card-options-card {
+  font-size: 14px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+  margin-top: 50px;
+}
 .question-answer-card {
   font-size: 20px;
   margin-bottom: 20px;
@@ -304,12 +316,9 @@ ul {
   border: 1px solid black;
   border-radius: 5px;
   height: 5px;
-  width: 98%; /* 90% der Bildschirmbreite */
-  max-width: 800px; /* Maximalbreite auf 800px begrenzen */
-  margin: auto; /* Zentrierung des Elements */
+
   margin-top: 10px;
   margin-bottom: 10px;
-  box-sizing: border-box;
 }
 
 .card-question-info {
@@ -317,6 +326,9 @@ ul {
   justify-content: space-between;
 }
 .card-question-and-answer {
+  width: 100%;
+  justify-self: center;
+  align-self: center;
   border: 1px solid black;
   border-radius: 30px;
   padding: 0px 30px 5px 30px;
@@ -325,19 +337,24 @@ ul {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
-  max-width: 800px; /* Maximalbreite auf 800px begrenzen */
   margin: auto; /* Zentrierung des Elements */
   padding: 20px; /* Innenabstand des Elements */
   box-sizing: border-box;
 }
 
 .quiz-answer-and-btn {
+  /* jetzt sind nur die btns drin */
   display: flex;
-  flex: 1;
   flex-direction: column;
   justify-content: space-between;
+  margin-top: auto;
 }
 
+.answerButtons {
+  /* div mir den btns */
+  display: flex;
+  justify-content: space-between;
+}
 button {
   background: none;
   border: none;
@@ -347,22 +364,11 @@ button {
   padding: 0;
 }
 
-.answerButtons {
-  display: flex;
-  flex: 1;
-  justify-content: space-between;
-  position: absolute;
-  bottom: 50px;
-  gap: 195px;
-  /* margin-top: 100px; */
-  /* margin-bottom: 10px; */
-  /* position: absolute; */
-  /* bottom: 10px; */
-  /* left: 50%; */
-  /* transform: translateX(-50%); */
-}
-
 .link-arrow {
   position: relative;
   top: 4px; /* Pfeil etwas nach unten */
+}
+
+.card-question-quiz {
+  margin-top: 20px;
 }

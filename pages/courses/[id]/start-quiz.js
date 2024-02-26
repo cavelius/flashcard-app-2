@@ -64,47 +64,49 @@ export default function StartQuiz() {
   return (
     <>
       <Logo />
-      <div className="loading-bar"></div>
-      <div onClick={toggle} className="card-question-and-answer">
-        <div className="card-question-info">
-          <p>{course.name}</p>
-          <p>
-            {currentCardIndex + 1} / {course.cards.length}
-          </p>
+      <div className="quiz-container">
+        <div className="loading-bar"></div>
+        <div onClick={toggle} className="card-question-and-answer">
+          <div className="card-question-info">
+            <p>{course.name}</p>
+            <p>
+              {currentCardIndex + 1} / {course.cards.length}
+            </p>
+          </div>
+          {isToggled ? (
+            <>
+              <p className="quiz-card-options-card">question:</p>
+              <h1 className="card-question-quiz">{question}</h1>
+            </>
+          ) : (
+            <>
+              <p className="quiz-card-options-card">answer:</p>
+              <h1 className="card-question-quiz">{answer}</h1>
+              <div className="quiz-answer-and-btn">
+                {!isToggled && (
+                  <div className="answerButtons">
+                    <button onClick={handleNextCardWrongAnswer}>
+                      <Image
+                        src="/assets/wrong.svg"
+                        alt="dont know the answer"
+                        width={60}
+                        height={60}
+                      />
+                    </button>
+                    <button onClick={handleNextCardRightAnswer}>
+                      <Image
+                        src="/assets/right.svg"
+                        alt="know the answer"
+                        width={60}
+                        height={60}
+                      />
+                    </button>
+                  </div>
+                )}
+              </div>
+            </>
+          )}
         </div>
-        {isToggled ? (
-          <>
-            <p>Question</p>
-            <h1>{question}</h1>
-          </>
-        ) : (
-          <>
-            <p>Answer</p>
-            <div className="quiz-answer-and-btn">
-              <h1>{answer}</h1>
-              {!isToggled && (
-                <div className="answerButtons">
-                  <button onClick={handleNextCardWrongAnswer}>
-                    <Image
-                      src="/assets/wrong.svg"
-                      alt="dont know the answer"
-                      width={60}
-                      height={60}
-                    />
-                  </button>
-                  <button onClick={handleNextCardRightAnswer}>
-                    <Image
-                      src="/assets/right.svg"
-                      alt="know the answer"
-                      width={60}
-                      height={60}
-                    />
-                  </button>
-                </div>
-              )}
-            </div>
-          </>
-        )}
       </div>
     </>
   );
