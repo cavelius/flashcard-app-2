@@ -30,7 +30,7 @@ export default function AddForm({ onSubmit, formName, defaultData }) {
           aria-labelledby={formName}
           onSubmit={handleSubmit}
         >
-          <h1 className="form-description"> Add a new Course</h1>
+          <h1 className="form-description"> Create a new Course</h1>
           <label htmlFor="name">course name:</label>
           <input
             name="name"
