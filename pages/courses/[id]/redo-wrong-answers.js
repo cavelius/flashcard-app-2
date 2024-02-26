@@ -90,7 +90,7 @@ export default function StartQuiz() {
           <div className="card-question-info">
             <p>{course.name}</p>
             <p>
-              {currentCardIndex + 1} / {course.cards.length}
+              {currentCardIndex + 1} / {parsedWrongAnswers.length}
             </p>
           </div>
           {isToggled ? (
