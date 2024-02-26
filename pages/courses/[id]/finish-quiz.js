@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import useSWR from "swr";
 import Link from "next/link";
+import Logo from "@/components/Logo";
 
 export default function FinishQuizPage() {
   const router = useRouter();
@@ -35,7 +36,7 @@ export default function FinishQuizPage() {
   console.log("right Answers from finish quiz:", right);
 
   // Funktion um die falschen Frage noch einmal zu machen
-  const redohQuiz = () => {
+  const redoQuiz = () => {
     router.push({
       pathname: `/courses/${id}/redo-wrong-answers`,
       query: {
@@ -47,17 +48,28 @@ export default function FinishQuizPage() {
 
   return (
     <>
-      <div>
-        <h1>Finish Quiz Page</h1>
-        <h2>Right Answers:</h2>
-        {parsedRightAnswers.length}
-        <h2>Wrong Answers:</h2>
-        {parsedWrongAnswers.length}
+      <Logo />
+      <div className="quiz-container">
+        <div>
+          <h1 className="finish-page-description">
+            Your finished the <br></br>
+            {course.name} Course
+          </h1>
+          <h2 className="finish-subhead">Right Answers:</h2>
+          <p className="finish-number">{parsedRightAnswers.length}</p>
+          <h2 className="finish-subhead">Wrong Answers:</h2>
+          <p className="finish-number">{parsedWrongAnswers.length}</p>
+        </div>
+        <button className="navigation-start-quiz" onClick={redoQuiz}>
+          <p className="navigation-text">redo wrong answers</p>
+        </button>
+
+        <div className="navigation">
+          <Link href={`/`} passHref legacyBehavior>
+            <p className="navigation-text">finish quiz</p>
+          </Link>
+        </div>
       </div>
-      <button onClick={redohQuiz}>redo wrong answers</button>
-      <Link href={`/`} passHref legacyBehavior>
-        finish quiz
-      </Link>
     </>
   );
 }

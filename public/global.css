@@ -57,6 +57,17 @@ p {
   margin-bottom: 0;
 }
 
+.finish-page-description {
+  font-family: "DM Sans";
+  font-weight: 900;
+  text-transform: uppercase;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  margin-bottom: 85px;
+  /* text-align: center; */
+}
+
 .course-container {
   /* border: 1px solid blue; */
   display: flex;
@@ -142,6 +153,15 @@ p {
   font-weight: 400;
   margin-top: 50px;
 }
+
+.finish-subhead {
+  font-size: 14px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+  margin-top: 50px;
+  text-align: center;
+}
+
 .question-answer-card {
   font-size: 20px;
   margin-bottom: 20px;
@@ -371,4 +391,9 @@ button {
 
 .card-question-quiz {
   margin-top: 20px;
+}
+
+.finish-number {
+  font-size: 40px;
+  text-align: center;
 }
