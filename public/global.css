@@ -10,8 +10,25 @@ body {
   font-family: "DM Sans";
 }
 
+h1 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.link {
+  text-decoration: none;
+}
 .create-course {
+  position: fixed; /* füllt so den ganzen HB blau */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: blue;
+  z-index: -1; /* Stellt sicher, dass die Klasse hinter dem Body-Inhalt liegt */
 }
 
 .logobox {
@@ -20,28 +37,145 @@ body {
   align-items: center; /* Vertikal zentrieren */
   background-color: #dbff00;
   border-radius: 30px;
-  width: 45%;
-  height: 40px;
+  width: 30%; /* 80% der Bildschirmbreite */
+  height: 40px; /* Automatische Höhe basierend auf dem Inhalt */
+  width: 200px; /* Maximalbreite auf 600px begrenzen */
 }
 
 .logoschrift {
   font-family: "Space Grotesk", sans-serif;
   font-weight: 100;
-  font-size: 22px;
+  font-size: 20px;
 }
 
 .page-description {
   font-family: "DM Sans";
   font-weight: 900;
   text-transform: uppercase;
-  margin-left: 20px;
+  margin: 20px;
   font-size: 16px;
+  margin-bottom: 0;
 }
 
 .course-container {
+  /* border: 1px solid blue; */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
+  padding: 20px;
+  padding-bottom: 90px; /* für den Abstand des add course bnts */
+  padding-top: 0;
+  margin-top: 5px;
+}
+
+.field {
+  border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+  width: 100%;
+  height: 200px;
+  list-style: none;
+  margin-bottom: 10px;
+  margin: 10px;
+  padding: 20px;
+  justify-self: center;
+  align-self: center;
+  justify-content: space-between;
+  background-color: white;
+}
+.field-card {
+  border: 1px solid black;
+  /* display: flex; */
+  /* flex-direction: column; */
+  border-radius: 30px;
+  width: 100%;
+  height: 200px;
+  list-style: none;
+  margin-bottom: 10px;
+  margin: 10px;
+  padding: 20px;
+  justify-self: center;
+  align-self: center;
+  background-color: white;
+}
+
+.field-content {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  padding: 10px;
+  border: violet solid 1px;
+  height: 150px;
+  justify-content: space-between;
+}
+
+.card-options {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: space-between;
+  margin: 0 2px 0 2px;
+}
+
+.card-options-course {
+  font-size: 14px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.card-options-card {
+  font-size: 14px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+}
+
+.question-answer-card {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-edit-and-delete-options {
+  height: 10px;
+}
+
+.field-name-description {
+  /* border: 1px solid purple; */
+  margin-top: 30px;
+}
+
+.course-name {
+  font-size: 40px;
+  line-height: 30px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.course-description {
+  margin-top: 10px;
+}
+
+.course-length-info {
+  border: 1px solid black;
+  border-radius: 30px;
+  height: 20px;
+  width: 80px;
+  display: flex;
+  justify-content: center;
+}
+
+.course-lengt-info-font {
+  font-size: 14px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+  margin-top: 1px;
+}
+
+.options-field-bottom {
+  /* border: solid yellow 1px; */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
 }
 
 .formfield-container {
@@ -52,18 +186,72 @@ body {
   margin: 0 30px 0 30px;
 }
 
-.field {
+.field-form {
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
   border-radius: 30px;
-  width: 80%;
-  height: 150px;
-  list-style: none;
-  padding: 0;
-  margin-bottom: 10px;
-  padding: 10%;
+  width: 100%;
+  height: 400px;
+  margin: 0px;
+  padding: 20px;
   justify-self: center;
   align-self: center;
+  justify-content: space-between;
   background-color: white;
+}
+
+.form-description {
+  font-family: "DM Sans";
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+input {
+  height: 40px;
+  margin-bottom: 0px;
+}
+
+.second-input {
+  margin-bottom: 0px;
+  font-size: 20px;
+}
+
+input[type="text"] {
+  font-size: 20px;
+}
+
+.form-characters_left {
+  font-size: 14px;
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 400;
+  text-align: end;
+}
+
+.navigation-form {
+  display: flex;
+  justify-content: center; /* Horizontal zentrieren */
+  align-items: center; /* Vertikal zentrieren */
+  background-color: black;
+  border-radius: 40px;
+  height: 40px;
+  bottom: 30px;
+  left: 30px; /* 30px Abstand von der linken Seite des Bildschirms */
+  right: 30px;
+}
+.navigation-form-space {
+  display: flex;
+  justify-content: center; /* Horizontal zentrieren */
+  align-items: center; /* Vertikal zentrieren */
+  background-color: black;
+  border-radius: 40px;
+  height: 40px;
+  bottom: 30px;
+  left: 30px; /* 30px Abstand von der linken Seite des Bildschirms */
+  right: 30px;
+  margin-top: 10px;
 }
 
 ul {
@@ -75,7 +263,7 @@ ul {
   justify-content: center; /* Horizontal zentrieren */
   align-items: center; /* Vertikal zentrieren */
   background-color: black;
-  border-radius: 30px;
+  border-radius: 40px;
   height: 40px;
   position: fixed;
   bottom: 30px;
@@ -104,4 +292,77 @@ ul {
   color: white;
   display: flex;
   margin-top: 18px;
+  margin-bottom: 20px;
+}
+
+.navigation-plus {
+  position: absolute;
+  right: 19px; /* verschiebt das plus */
+}
+
+.loading-bar {
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 5px;
+  width: 98%; /* 90% der Bildschirmbreite */
+  max-width: 800px; /* Maximalbreite auf 800px begrenzen */
+  margin: auto; /* Zentrierung des Elements */
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.card-question-info {
+  display: flex;
+  justify-content: space-between;
+}
+.card-question-and-answer {
+  border: 1px solid black;
+  border-radius: 30px;
+  padding: 0px 30px 5px 30px;
+  margin-top: 20px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  max-width: 800px; /* Maximalbreite auf 800px begrenzen */
+  margin: auto; /* Zentrierung des Elements */
+  padding: 20px; /* Innenabstand des Elements */
+  box-sizing: border-box;
+}
+
+.quiz-answer-and-btn {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  margin: 0;
+  padding: 0;
+}
+
+.answerButtons {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 50px;
+  gap: 195px;
+  /* margin-top: 100px; */
+  /* margin-bottom: 10px; */
+  /* position: absolute; */
+  /* bottom: 10px; */
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+}
+
+.link-arrow {
+  position: relative;
+  top: 4px; /* Pfeil etwas nach unten */
 }

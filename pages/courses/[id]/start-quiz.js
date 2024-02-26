@@ -1,6 +1,8 @@
 import { useState } from "react";
 import useSWR from "swr";
 import { useRouter } from "next/router.js";
+import Logo from "@/components/Logo";
+import Image from "next/image";
 
 export default function StartQuiz() {
   const router = useRouter();
@@ -22,7 +24,7 @@ export default function StartQuiz() {
       const currentCard = course.cards[currentCardIndex];
       setRightAnswers((prevRightAnswers) => [...prevRightAnswers, currentCard]);
       setCurrentCardIndex((prevIndex) => prevIndex + 1);
-      setIsToggled(true);
+      setIsToggled(false);
     } else {
       const currentCard = course.cards[currentCardIndex];
       const updatedRightAnswers = [...rightAnswers, currentCard];
@@ -42,7 +44,7 @@ export default function StartQuiz() {
       const currentCard = course.cards[currentCardIndex];
       setWrongAnswers((prevWrongAnswers) => [...prevWrongAnswers, currentCard]);
       setCurrentCardIndex((prevIndex) => prevIndex + 1);
-      setIsToggled(true);
+      setIsToggled(false);
     } else {
       const currentCard = course.cards[currentCardIndex];
       const updatedWrongAnswers = [...wrongAnswers, currentCard];
@@ -59,23 +61,51 @@ export default function StartQuiz() {
 
   const currentCard = course.cards[currentCardIndex];
   const { question, answer } = currentCard;
-
   return (
-    <div>
-      <p> Course: {course.name}</p>
-      {currentCardIndex + 1} Card from {course.cards.length}
-      <p>{isToggled ? `question: ${question}` : `answer: ${answer}`}</p>
-      <button onClick={toggle}>
-        {isToggled ? "show answer" : "show question"}
-      </button>
-      {!isToggled && (
-        <div>
-          <button onClick={handleNextCardRightAnswer}>I knew the answer</button>
-          <button onClick={handleNextCardWrongAnswer}>
-            I dont know the answer
-          </button>
+    <>
+      <Logo />
+      <div className="loading-bar"></div>
+      <div onClick={toggle} className="card-question-and-answer">
+        <div className="card-question-info">
+          <p>{course.name}</p>
+          <p>
+            {currentCardIndex + 1} / {course.cards.length}
+          </p>
         </div>
-      )}
-    </div>
+        {isToggled ? (
+          <>
+            <p>Question</p>
+            <h1>{question}</h1>
+          </>
+        ) : (
+          <>
+            <p>Answer</p>
+            <div className="quiz-answer-and-btn">
+              <h1>{answer}</h1>
+              {!isToggled && (
+                <div className="answerButtons">
+                  <button onClick={handleNextCardWrongAnswer}>
+                    <Image
+                      src="/assets/wrong.svg"
+                      alt="dont know the answer"
+                      width={60}
+                      height={60}
+                    />
+                  </button>
+                  <button onClick={handleNextCardRightAnswer}>
+                    <Image
+                      src="/assets/right.svg"
+                      alt="know the answer"
+                      width={60}
+                      height={60}
+                    />
+                  </button>
+                </div>
+              )}
+            </div>
+          </>
+        )}
+      </div>
+    </>
   );
 }

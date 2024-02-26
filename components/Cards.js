@@ -1,6 +1,7 @@
 import { useRouter } from "next/router.js";
 import useSWR from "swr";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Cards() {
   const router = useRouter();
@@ -18,20 +19,26 @@ export default function Cards() {
         <>
           {cards.map(({ question, answer, _id }) => {
             return (
-              <div className="field" key={_id}>
-                <button>
-                  <Link
-                    href={`/courses/${id}/cards/${_id}/card-edit-and-delete`}
-                  >
-                    ...
-                  </Link>
-                </button>
-                <p>
-                  <small>
-                    <strong> Question: {question}</strong>
-                  </small>
-                </p>
-                <span> Answer: {answer}</span>
+              <div className="field-card" key={_id}>
+                <div className="card-options">
+                  <h1 className="card-options-course"></h1>
+                  <button className="btn-edit-and-delete-options">
+                    <Link
+                      href={`/courses/${id}/cards/${_id}/card-edit-and-delete`}
+                    >
+                      <Image
+                        src="/assets/edit-and-delete.svg"
+                        alt="edit-and-delete-options"
+                        width={20}
+                        height={20}
+                      />
+                    </Link>
+                  </button>
+                </div>
+                <p className="card-options-card">question:</p>
+                <p className="question-answer-card"> {question}</p>
+                <p className="card-options-card">answer:</p>
+                <p className="question-answer-card">{answer}</p>
               </div>
             );
           })}
