@@ -32,7 +32,7 @@ export default function CreateCard() {
   return (
     <>
       <div id="add-place" className="create-course">
-        <div className="formfield-container">
+        <div className="create-course">
           <FormAddCard onSubmit={addCard} formName={"add-place"} />
         </div>
       </div>
