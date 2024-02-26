@@ -2,6 +2,7 @@ import Link from "next/link";
 import Course from "../components/Course";
 import useSWR from "swr";
 import Logo from "@/components/Logo";
+import Image from "next/image";
 
 // START FRONTEND
 
@@ -23,14 +24,24 @@ export default function HomePage() {
                 name={course.name}
                 description={course.description}
                 id={`${course._id.$oid ?? course._id}`}
+                length={course.cards.length}
               />
             </li>
           );
         })}
       </ul>
-      <div className="navigation">
+      <div>
         <Link href="/create-course" passHref legacyBehavior>
-          <p className="navigation-text">add course</p>
+          <div className="navigation">
+            <p className="navigation-text">add course</p>
+            <Image
+              className="navigation-plus"
+              src="/assets/plus.svg"
+              alt="edit-and-delete-options"
+              width={25}
+              height={25}
+            />
+          </div>
         </Link>
       </div>
     </>

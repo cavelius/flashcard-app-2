@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import Form from "@/components/FormAdd";
+import FormAdd from "@/components/FormAdd";
 
 export default function CreateCourse() {
   const router = useRouter();
@@ -24,8 +24,8 @@ export default function CreateCourse() {
   }
   return (
     <>
-      <div id="add-place" className="create-course">
-        <Form onSubmit={addCourse} formName={"add-place"} />
+      <div className="create-course">
+        <FormAdd onSubmit={addCourse} formName={"add-place"} />
       </div>
     </>
   );

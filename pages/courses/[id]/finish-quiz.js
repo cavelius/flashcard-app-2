@@ -34,7 +34,7 @@ export default function FinishQuizPage() {
   console.log("wrong Answers from finish quiz:", wrong);
   console.log("right Answers from finish quiz:", right);
 
-  // Funktion zum Abschließen des Quiz
+  // Funktion um die falschen Frage noch einmal zu machen
   const redohQuiz = () => {
     router.push({
       pathname: `/courses/${id}/redo-wrong-answers`,

@@ -1,45 +1,69 @@
+import { useState } from "react";
 import Link from "next/link";
 
 export default function AddForm({ onSubmit, formName, defaultData }) {
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+
+  function handleNameChange(event) {
+    const value = event.target.value;
+    setName(value);
+  }
+
+  function handleDescriptionChange(event) {
+    const value = event.target.value;
+    setDescription(value);
+  }
+
   function handleSubmit(event) {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
+    const data = { name, description };
     onSubmit(data);
     console.log("data von Formfield", data);
   }
+
   return (
     <>
       <div className="formfield-container">
         <form
-          className="field"
+          className="field-form"
           aria-labelledby={formName}
           onSubmit={handleSubmit}
         >
-          <h1 className="page-description"> Add a new Course</h1>
-          <label htmlFor="name">Name</label>
-          <br></br>
+          <h1 className="form-description"> Add a new Course</h1>
+          <label htmlFor="name">course name:</label>
           <input
-            id="name"
             name="name"
+            id="name"
             type="text"
-            defaultValue={defaultData?.name}
+            maxLength={15}
+            value={name}
+            onChange={handleNameChange}
           />
-          <br></br>
-          <label htmlFor="description">Description</label>
-          <br></br>
+          <p className="form-characters_left">
+            {15 - name.length} characters left
+          </p>
+          <label htmlFor="description">course description:</label>
           <input
+            className="second-input"
             name="description"
             id="description"
-            cols="30"
-            rows="10"
-            defaultValue={defaultData?.description}
+            type="text"
+            maxLength={35}
+            value={description}
+            onChange={handleDescriptionChange}
           />
-          <br></br>
-          <button type="submit">create</button>
-          <br></br>
-          <button>
-            <Link href="/">cancel</Link>
+          <p className="form-characters_left">
+            {35 - description.length} characters left
+          </p>
+          <br />
+          <button className="navigation-form-space" type="submit">
+            <p className="navigation-text">create</p>
+          </button>
+          <button className="navigation-form-space">
+            <Link className="link" href="/">
+              <p className="navigation-text">cancel</p>
+            </Link>
           </button>
         </form>
       </div>
