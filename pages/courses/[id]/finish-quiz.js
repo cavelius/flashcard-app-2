@@ -60,9 +60,11 @@ export default function FinishQuizPage() {
           <h2 className="finish-subhead">Wrong Answers:</h2>
           <p className="finish-number">{parsedWrongAnswers.length}</p>
         </div>
-        <button className="navigation-start-quiz" onClick={redoQuiz}>
-          <p className="navigation-text">redo wrong answers</p>
-        </button>
+        {parsedWrongAnswers.length > 0 && ( // Bedingung für die Anzeige des Buttons
+          <button className="navigation-start-quiz" onClick={redoQuiz}>
+            <p className="navigation-text">redo wrong answers</p>
+          </button>
+        )}
 
         <div className="navigation">
           <Link href={`/`} passHref legacyBehavior>
