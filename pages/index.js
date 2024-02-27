@@ -13,7 +13,7 @@ export default function HomePage() {
     <>
       <Logo />
       <div>
-        <p className="page-description">your Courses</p>
+        <p className="page-description">your {data.length} Courses</p>
       </div>
       <ul className="course-container">
         {data.map((course) => {

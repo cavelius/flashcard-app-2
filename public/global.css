@@ -44,7 +44,7 @@ p {
   border-radius: 30px;
   width: 30%; /* 80% der Bildschirmbreite */
   height: 40px; /* Automatische Höhe basierend auf dem Inhalt */
-  width: 200px; /* Maximalbreite auf 600px begrenzen */
+  width: 140px; /* Maximalbreite auf 600px begrenzen */
 }
 
 .logoschrift {
@@ -57,7 +57,9 @@ p {
   font-family: "DM Sans";
   font-weight: 900;
   text-transform: uppercase;
-  margin: 20px;
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   font-size: 16px;
   margin-bottom: 0;
 }
@@ -379,7 +381,7 @@ ul {
   border-radius: 30px;
   padding: 0px 30px 5px 30px;
   margin-top: 20px;
-  height: 80vh;
+  height: 75vh;
   display: flex;
   flex-direction: column;
   flex-grow: 1;

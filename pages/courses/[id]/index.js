@@ -23,7 +23,9 @@ export default function CourseOverviev() {
     <>
       <Logo />
       <div>
-        <p className="page-description">your Cards</p>
+        <p className="page-description">
+          your {course.cards.length} Cards from {course.name}
+        </p>
         <Cards />
       </div>
       <div className="navigation">
