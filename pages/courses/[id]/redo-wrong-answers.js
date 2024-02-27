@@ -143,35 +143,3 @@ export default function StartQuiz() {
     </>
   );
 }
-
-{
-  /* <Logo />
-      <div className="quiz-container">
-        <div className="loading-bar"></div>
-        <div>
-          <p>{course.name}</p>
-          {currentCardIndex + 1} Card from {parsedWrongAnswers.length}
-          {currentCard && (
-            <>
-              <p>{isToggled ? `question: ${question}` : `answer: ${answer}`}</p>
-              <button onClick={toggle}>
-                {isToggled ? "show answer" : "show question"}
-              </button>
-              {!isToggled && (
-                <div>
-                  <button onClick={handleNextCardRightAnswer}>
-                    I knew the answer
-                  </button>
-                  <button onClick={handleNextCardWrongAnswer}>
-                    I dont know the answer
-                  </button>
-                </div>
-              )}
-            </>
-          )}
-        </div>
-      </div>
-    </>
-  );
-} */
-}
