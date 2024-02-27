@@ -38,7 +38,7 @@ export default function EditAndDeleteCard() {
   if (error) return <h2>Error! 🔥</h2>;
 
   async function deleteCard() {
-    if (confirm(`Are you sure that you want to delete this course?`) == true) {
+    if (confirm(`Are you sure that you want to delete this card?`) == true) {
       const response = await fetch(`/api/courses/${id}/cards/${card_id}`, {
         method: "DELETE",
       });

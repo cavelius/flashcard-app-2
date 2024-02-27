@@ -30,7 +30,7 @@ export default async function handler(request, response) {
     if (request.method === "DELETE") {
       const courseToDelete = await Course.findByIdAndDelete(id);
       await Card.deleteMany({ _id: { $in: courseToDelete.cards } });
-      response.status(260).json("Card deleted");
+      response.status(260).json("Course deleted");
     }
 
     // // Daten von datenbank erstellen hier werden die CARDS erstellt

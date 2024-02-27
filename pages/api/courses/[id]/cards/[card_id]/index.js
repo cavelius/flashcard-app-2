@@ -29,7 +29,13 @@ export default async function handler(request, response) {
     // Daten von Datenbank löschen
     if (request.method === "DELETE") {
       await Card.findByIdAndDelete(card_id);
-      response.status(260).json("Card deleted");
+      await Course.findByIdAndUpdate(
+        id,
+        { $pull: { cards: card_id } },
+        false,
+        true
+      );
+      response.status(200).json("Card deleted");
     }
   } catch (e) {
     console.log(e);
