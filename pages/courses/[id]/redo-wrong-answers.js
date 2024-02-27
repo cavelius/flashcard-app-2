@@ -14,11 +14,19 @@ export default function StartQuiz() {
   const [rightAnswers, setRightAnswers] = useState([]);
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const { right, wrong } = router.query;
+  const [loadingBarWidth, setLoadingBarWidth] = useState(0); // State für die Breite der Loading-Bar
 
   console.log("wron from redo", wrong);
 
   const [parsedRightAnswers, setParsedRightAnswers] = useState([]);
   const [parsedWrongAnswers, setParsedWrongAnswers] = useState([]);
+
+  useEffect(() => {
+    if (course && course.cards) {
+      const progress = ((currentCardIndex + 1) / course.cards.length) * 100;
+      setLoadingBarWidth(progress);
+    }
+  }, [currentCardIndex, course]);
 
   useEffect(() => {
     if (right) {
@@ -85,7 +93,11 @@ export default function StartQuiz() {
     <>
       <Logo />
       <div className="quiz-container">
-        <div className="loading-bar"></div>
+        <div className="loading-bar-border"></div>
+        <div
+          className={["loading-bar"]}
+          style={{ width: `${loadingBarWidth}%` }}
+        ></div>
         <div onClick={toggle} className="card-question-and-answer">
           <div className="card-question-info">
             <p>{course.name}</p>
