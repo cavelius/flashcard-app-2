@@ -347,11 +347,22 @@ ul {
   right: 19px; /* verschiebt das plus */
 }
 
+.loading-bar-border {
+  /* umrandet die loadingbar */
+  border: 1px solid black;
+  border-radius: 5px;
+  height: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  position: relative;
+  top: 27px;
+}
+
 .loading-bar {
   border: 1px solid black;
   border-radius: 5px;
   height: 5px;
-
+  background-color: black;
   margin-top: 10px;
   margin-bottom: 10px;
 }
