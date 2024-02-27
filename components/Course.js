@@ -1,5 +1,5 @@
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Course({ name, description, id, length }) {
   return (
@@ -22,13 +22,16 @@ export default function Course({ name, description, id, length }) {
         <p className="course-description">{description}</p>
       </div>
       <div className="options-field-bottom">
-        <div className="course-length-info">
-          <p className="course-lengt-info-font">
-            {length} {length === 1 ? "card" : "cards"}
-          </p>
-        </div>
+        <Link className="link" href={`/courses/${id}`}>
+          <div className="course-length-info">
+            <p className="course-lengt-info-font">
+              {length} {length === 1 ? "card" : "cards"}
+            </p>
+          </div>
+        </Link>
+
         <button>
-          <Link className="link-arrow" href={`/courses/${id}`}>
+          <Link className="link-arrow" href={`/courses/${id}/start-quiz`}>
             <Image
               src="/assets/arrow.svg"
               alt="edit-and-delete-options"
