@@ -11,7 +11,7 @@ function Counter({ targetCount, className }) {
     if (count < targetCount) {
       const interval = setInterval(() => {
         setCount((prevCount) => prevCount + 1);
-      }, 200); // Intervall in Millisekunden (200ms = 0,2 Sekunden)
+      }, 170); // Intervall in Millisekunden (200ms = 0,2 Sekunden)
 
       return () => clearInterval(interval);
     }
