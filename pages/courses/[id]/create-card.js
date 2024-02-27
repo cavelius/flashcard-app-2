@@ -22,9 +22,6 @@ export default function CreateCard() {
     if (response.ok) {
       await response.json();
       router.push(`/courses/${id}`);
-      //   mutate();
-      //   e.target.reset();
-    } else {
       console.error(`Error: ${response.status}`);
     }
   }
@@ -33,7 +30,11 @@ export default function CreateCard() {
     <>
       <div id="add-place" className="create-course">
         <div className="create-course">
-          <FormAddCard onSubmit={addCard} formName={"add-place"} />
+          <FormAddCard
+            onSubmit={addCard}
+            formName={"add-place"}
+            cancel={`/courses/${id}`}
+          />
         </div>
       </div>
     </>

@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useState } from "react";
 
-export default function AddFormAddCourse({ onSubmit }) {
+export default function AddFormAddCourse({ onSubmit, cancel }) {
   // speichert die eingabe in onSubmit
   function handleSubmit(event) {
     event.preventDefault();
@@ -15,15 +15,27 @@ export default function AddFormAddCourse({ onSubmit }) {
       <div className="formfield-container">
         <form className="field-form" onSubmit={handleSubmit}>
           <h1 className="form-description"> Create a new Card</h1>
-          <label htmlFor="question">Your Question</label>
-          <input type="text" name="question" placeholder="question" />
-          <label htmlFor="answer">Your Answer</label>
-          <input type="text" name="answer" placeholder="answer here..." />
+
+          <label htmlFor="question">your question:</label>
+          <textarea
+            className="input-create-card"
+            name="question"
+            rows="10"
+            cols="10"
+          />
+
+          <label htmlFor="answer">your answer:</label>
+          <textarea
+            className="input-create-card"
+            name="answer"
+            rows="10"
+            cols="10"
+          />
           <button className="navigation-form-space" type="submit">
             <p className="navigation-text">create</p>
           </button>
           <button className="navigation-form-space">
-            <Link className="link" href="/">
+            <Link className="link" href={cancel}>
               <p className="navigation-text">cancel</p>
             </Link>
           </button>
