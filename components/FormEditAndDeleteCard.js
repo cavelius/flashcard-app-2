@@ -13,41 +13,44 @@ export default function FormEditAndDeleteCard({
     const data = Object.fromEntries(formData);
     onSubmit(data);
     console.log("data von Formfield FromEditAndDeleteCard", data);
-    console.log("question", question);
+    // console.log("question", question);
   }
   return (
     <>
       <div className="formfield-container">
         <form
-          className="field"
+          className="field-form"
           aria-labelledby={formName}
           onSubmit={handleSubmit}
         >
-          <h1 className="page-description">Edit Card</h1>
-          <label htmlFor="question">Question</label>
-          <br></br>
-          <input
-            id="question"
+          <h1 className="form-description-space">Edit Card</h1>
+          <label htmlFor="question">your question:</label>
+          <textarea
+            className="input-create-card"
             name="question"
-            type="text"
+            rows="10"
+            cols="10"
             defaultValue={defaultData?.question}
           />
-          <br></br>
-          <label htmlFor="answer">Answer</label>
-          <br></br>
-          <input
+          <label htmlFor="answer">your answer:</label>
+          <textarea
+            className="input-create-card"
             name="answer"
-            id="answer"
-            type="text"
+            rows="10"
+            cols="10"
             defaultValue={defaultData?.answer}
           />
-          <br></br>
-          <button type="submit">Update</button>
-          <br></br>
-          <button>
-            <Link href={`/courses/${courseId}`}>Cancel</Link>
+          <button className="navigation-form-space" type="submit">
+            <p className="navigation-text">update</p>
           </button>
-          <button onClick={onClick}>Delete</button>
+          <button className="navigation-form-space" onClick={onClick}>
+            <p className="navigation-text">delete</p>
+          </button>
+          <button className="navigation-form-space">
+            <Link className="link" href={`/courses/${courseId}`}>
+              <p className="navigation-text">cancel</p>
+            </Link>
+          </button>
         </form>
       </div>
     </>

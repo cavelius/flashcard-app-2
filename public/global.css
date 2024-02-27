@@ -21,6 +21,11 @@ p {
 .link {
   text-decoration: none;
 }
+
+/* label {
+  margin-top: 20px;
+  margin-bottom: 11px; */
+
 .create-course {
   position: fixed; /* füllt so den ganzen HB blau */
   top: 0;
@@ -107,7 +112,7 @@ p {
   /* flex-direction: column; */
   border-radius: 30px;
   width: 100%;
-  height: 200px;
+  min-height: 200px;
   list-style: none;
   margin-bottom: 10px;
   margin: 10px;
@@ -115,6 +120,7 @@ p {
   justify-self: center;
   align-self: center;
   background-color: white;
+  overflow-wrap: break-word; /* setzt text in eine neue Zeile */
 }
 
 .field-content {
@@ -243,18 +249,25 @@ p {
   margin-bottom: 30px;
 }
 
+.form-description-space {
+  font-family: "DM Sans";
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
 input {
   height: 40px;
   margin-bottom: 0px;
-}
-
-.second-input {
-  margin-bottom: 0px;
   font-size: 20px;
 }
 
-input[type="text"] {
-  font-size: 20px;
+.input-create-card {
+  font-family: "DM Sans";
+  height: 70px;
+  /* margin-bottom: 0px; */
+  font-size: 15px;
 }
 
 .form-characters_left {
@@ -277,13 +290,13 @@ input[type="text"] {
 }
 .navigation-form-space {
   display: flex;
-  justify-content: center; /* Horizontal zentrieren */
-  align-items: center; /* Vertikal zentrieren */
+  justify-content: center;
+  align-items: center;
   background-color: black;
   border-radius: 40px;
   height: 40px;
   bottom: 30px;
-  left: 30px; /* 30px Abstand von der linken Seite des Bildschirms */
+  left: 30px;
   right: 30px;
   margin-top: 10px;
 }
