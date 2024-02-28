@@ -126,6 +126,7 @@ export default function StartQuiz() {
                 <div className="answerButtons">
                   <button onClick={handleNextCardWrongAnswer}>
                     <Image
+                      className="btn-wrong"
                       src={
                         clickedWrong
                           ? "/assets/clicked-wrong.svg"
@@ -138,6 +139,7 @@ export default function StartQuiz() {
                   </button>
                   <button onClick={handleNextCardRightAnswer}>
                     <Image
+                      className="btn-right"
                       src={
                         clickedRight
                           ? "/assets/clicked-right.svg"

@@ -13,10 +13,16 @@ export default function HomePage() {
     <>
       <Logo />
       <div>
-        <p className="page-description">your {data.length} Courses</p>
+        <p className="page-description">
+          {data.length === 0
+            ? "Add your Courses"
+            : data.length === 1
+            ? "your 1 Course"
+            : `your ${data.length} Courses`}
+        </p>
       </div>
       <ul className="course-container">
-        {data.map((course) => {
+        {data.toReversed().map((course) => {
           return (
             <li className="field" key={course._id}>
               {/* Mapt über die Data der Coures in MongoDB */}
@@ -33,7 +39,7 @@ export default function HomePage() {
       <div>
         <Link href="/create-course" passHref legacyBehavior>
           <div className="navigation">
-            <p className="navigation-text">add course</p>
+            <p className="navigation-text">create course</p>
             <Image
               className="navigation-plus"
               src="/assets/plus.svg"

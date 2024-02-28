@@ -17,11 +17,11 @@ export default function Cards() {
     <div className="course-container">
       {cards && (
         <>
-          {cards.map(({ question, answer, _id }) => {
+          {cards.toReversed().map(({ question, answer, _id }) => {
             return (
               <div className="field-card" key={_id}>
                 <div className="card-options">
-                  <h1 className="card-options-course">card</h1>
+                  <h1 className="card-options-card">card</h1>
                   <button className="btn-edit-and-delete-options">
                     <Link
                       href={`/courses/${id}/cards/${_id}/card-edit-and-delete`}

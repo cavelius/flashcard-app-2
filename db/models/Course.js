@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 
 const courseSchema = new Schema({
   name: { type: String, required: true },
-  description: { type: String, required: true },
+  description: { type: String, required: false },
   cards: { type: [Schema.Types.ObjectId], ref: "Card" },
 });
 const Course = mongoose.models.Course || mongoose.model("Course", courseSchema);

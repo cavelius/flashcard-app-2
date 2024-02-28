@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import useSWR from "swr";
 import Link from "next/link";
 import Logo from "@/components/Logo";
@@ -45,6 +45,14 @@ export default function FinishQuizPage() {
   console.log("wrong Answers:", wrong);
   console.log("right Answers", right);
 
+  const allAnnswers = wrong.length + right.length;
+
+  console.log(allAnnswers);
+
+  const percentageRightAnswers = (right.length / allAnnswers) * 100;
+
+  console.log(percentageRightAnswers);
+
   // Funktion um die falschen Frage noch einmal zu machen
   const redoQuiz = () => {
     router.push({
@@ -61,10 +69,25 @@ export default function FinishQuizPage() {
       <Logo />
       <div className="quiz-container">
         <div>
-          <h1 className="finish-page-description">
+          {/* <h1 className="finish-page-description">
             Your finished the <br></br>
             {course.name} Course
-          </h1>
+          </h1> */}
+          <p className="finish-page-description">
+            {percentageRightAnswers === 0
+              ? "No right answers now, but if you redo the test it can only be better"
+              : percentageRightAnswers <= 20
+              ? "You're making progress! Keep practicing!"
+              : percentageRightAnswers <= 50
+              ? "Keep going! You're halfway there!"
+              : percentageRightAnswers <= 70
+              ? "Great job! You're on the right track!"
+              : percentageRightAnswers <= 99
+              ? "Yeah! You're almost there!"
+              : percentageRightAnswers === 100
+              ? "perfekt, you know the answers"
+              : null}
+          </p>
           <h2 className="finish-subhead">Right Answers:</h2>
           <Counter
             className="finish-number"
