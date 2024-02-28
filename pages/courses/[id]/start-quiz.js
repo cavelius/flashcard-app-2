@@ -13,7 +13,8 @@ export default function StartQuiz() {
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [loadingBarWidth, setLoadingBarWidth] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false); // Zustand für die Flip-Karte
-  const [clickedAnswer, setClickedAnswer] = useState(null);
+  const [clickedRight, setClickedRight] = useState(false);
+  const [clickedWrong, setClickedWrong] = useState(false);
 
   // loadingbar
   useEffect(() => {
@@ -25,37 +26,62 @@ export default function StartQuiz() {
 
   if (!course || !course.cards) return null;
 
-  const handleNextCardAnswer = (isRight) => {
-    setClickedAnswer(isRight);
+  const handleNextCardRightAnswer = () => {
+    setClickedRight(true); // Zustand aktualisieren
 
     setTimeout(() => {
-      setClickedAnswer(null);
+      setClickedRight(false); // Zustand nach 1 Sekunde zurücksetzen
 
-      const currentCard = course.cards[currentCardIndex];
-      if (isRight) {
+      if (currentCardIndex < course?.cards.length - 1) {
+        const currentCard = course.cards[currentCardIndex];
         setRightAnswers((prevRightAnswers) => [
           ...prevRightAnswers,
           currentCard,
         ]);
-      } else {
-        setWrongAnswers((prevWrongAnswers) => [
-          ...prevWrongAnswers,
-          currentCard,
-        ]);
-      }
-
-      if (currentCardIndex < course.cards.length - 1) {
         setCurrentCardIndex((prevIndex) => prevIndex + 1);
+        console.log("Clicked after delay");
       } else {
+        const currentCard = course.cards[currentCardIndex];
+        const updatedRightAnswers = [...rightAnswers, currentCard];
+        setRightAnswers(updatedRightAnswers);
         router.push({
           pathname: `/courses/${id}/finish-quiz`,
           query: {
-            rightAnswers: JSON.stringify(rightAnswers),
+            rightAnswers: JSON.stringify(updatedRightAnswers),
             wrongAnswers: JSON.stringify(wrongAnswers),
           },
         });
       }
-    }, 100);
+    }, 100); // Verzögerung für das Zurücksetzen des Zustands
+  };
+
+  const handleNextCardWrongAnswer = () => {
+    setClickedWrong(true); // Zustand aktualisieren
+
+    setTimeout(() => {
+      setClickedWrong(false); // Zustand nach 1 Sekunde zurücksetzen
+
+      if (currentCardIndex < course?.cards.length - 1) {
+        const currentCard = course.cards[currentCardIndex];
+        setWrongAnswers((prevWrongAnswers) => [
+          ...prevWrongAnswers,
+          currentCard,
+        ]);
+        setCurrentCardIndex((prevIndex) => prevIndex + 1);
+        console.log("Clicked after delay");
+      } else {
+        const currentCard = course.cards[currentCardIndex];
+        const updatedWrongAnswers = [...wrongAnswers, currentCard];
+        setWrongAnswers(updatedWrongAnswers);
+        router.push({
+          pathname: `/courses/${id}/finish-quiz`,
+          query: {
+            rightAnswers: JSON.stringify(rightAnswers),
+            wrongAnswers: JSON.stringify(updatedWrongAnswers),
+          },
+        });
+      }
+    }, 100); // Verzögerung für das Zurücksetzen des Zustands
   };
 
   const currentCard = course.cards[currentCardIndex];
@@ -98,10 +124,10 @@ export default function StartQuiz() {
               <h1 className="card-question-quiz">{answer}</h1>
               <div className="quiz-answer-and-btn">
                 <div className="answerButtons">
-                  <button onClick={() => handleNextCardAnswer(false)}>
+                  <button onClick={handleNextCardWrongAnswer}>
                     <Image
                       src={
-                        clickedAnswer === false
+                        clickedWrong
                           ? "/assets/clicked-wrong.svg"
                           : "/assets/wrong.svg"
                       }
@@ -110,10 +136,10 @@ export default function StartQuiz() {
                       height={60}
                     />
                   </button>
-                  <button onClick={() => handleNextCardAnswer(true)}>
+                  <button onClick={handleNextCardRightAnswer}>
                     <Image
                       src={
-                        clickedAnswer === true
+                        clickedRight
                           ? "/assets/clicked-right.svg"
                           : "/assets/right.svg"
                       }
