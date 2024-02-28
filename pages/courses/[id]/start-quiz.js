@@ -13,7 +13,8 @@ export default function StartQuiz() {
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [loadingBarWidth, setLoadingBarWidth] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false); // Zustand für die Flip-Karte
-  const [clicked, setClicked] = useState(false);
+  const [clickedRight, setClickedRight] = useState(false);
+  const [clickedWrong, setClickedWrong] = useState(false);
 
   // loadingbar
   useEffect(() => {
@@ -26,8 +27,12 @@ export default function StartQuiz() {
   if (!course || !course.cards) return null;
 
   const handleNextCardRightAnswer = () => {
-    if (currentCardIndex < course?.cards.length - 1) {
-      setTimeout(() => {
+    setClickedRight(true); // Zustand aktualisieren
+
+    setTimeout(() => {
+      setClickedRight(false); // Zustand nach 1 Sekunde zurücksetzen
+
+      if (currentCardIndex < course?.cards.length - 1) {
         const currentCard = course.cards[currentCardIndex];
         setRightAnswers((prevRightAnswers) => [
           ...prevRightAnswers,
@@ -35,47 +40,48 @@ export default function StartQuiz() {
         ]);
         setCurrentCardIndex((prevIndex) => prevIndex + 1);
         console.log("Clicked after delay");
-        setClicked(true); // Zustand aktualisieren
-      }, 100);
-    } else {
-      const currentCard = course.cards[currentCardIndex];
-      const updatedRightAnswers = [...rightAnswers, currentCard];
-      setRightAnswers(updatedRightAnswers);
-      router.push({
-        pathname: `/courses/${id}/finish-quiz`,
-        query: {
-          rightAnswers: JSON.stringify(updatedRightAnswers),
-          wrongAnswers: JSON.stringify(wrongAnswers),
-        },
-      });
-    }
+      } else {
+        const currentCard = course.cards[currentCardIndex];
+        const updatedRightAnswers = [...rightAnswers, currentCard];
+        setRightAnswers(updatedRightAnswers);
+        router.push({
+          pathname: `/courses/${id}/finish-quiz`,
+          query: {
+            rightAnswers: JSON.stringify(updatedRightAnswers),
+            wrongAnswers: JSON.stringify(wrongAnswers),
+          },
+        });
+      }
+    }, 100); // Verzögerung für das Zurücksetzen des Zustands
   };
 
   const handleNextCardWrongAnswer = () => {
-    if (currentCardIndex < course.cards.length - 1) {
-      setTimeout(() => {
+    setClickedWrong(true); // Zustand aktualisieren
+
+    setTimeout(() => {
+      setClickedWrong(false); // Zustand nach 1 Sekunde zurücksetzen
+
+      if (currentCardIndex < course?.cards.length - 1) {
         const currentCard = course.cards[currentCardIndex];
         setWrongAnswers((prevWrongAnswers) => [
           ...prevWrongAnswers,
           currentCard,
         ]);
         setCurrentCardIndex((prevIndex) => prevIndex + 1);
-        // Code, der nach der Verzögerung ausgeführt werden soll
         console.log("Clicked after delay");
-        setClicked(true); // Zustand aktualisieren
-      }, 100);
-    } else {
-      const currentCard = course.cards[currentCardIndex];
-      const updatedWrongAnswers = [...wrongAnswers, currentCard];
-      setWrongAnswers(updatedWrongAnswers);
-      router.push({
-        pathname: `/courses/${id}/finish-quiz`,
-        query: {
-          rightAnswers: JSON.stringify(rightAnswers),
-          wrongAnswers: JSON.stringify(updatedWrongAnswers),
-        },
-      });
-    }
+      } else {
+        const currentCard = course.cards[currentCardIndex];
+        const updatedWrongAnswers = [...wrongAnswers, currentCard];
+        setWrongAnswers(updatedWrongAnswers);
+        router.push({
+          pathname: `/courses/${id}/finish-quiz`,
+          query: {
+            rightAnswers: JSON.stringify(rightAnswers),
+            wrongAnswers: JSON.stringify(updatedWrongAnswers),
+          },
+        });
+      }
+    }, 100); // Verzögerung für das Zurücksetzen des Zustands
   };
 
   const currentCard = course.cards[currentCardIndex];
@@ -120,7 +126,11 @@ export default function StartQuiz() {
                 <div className="answerButtons">
                   <button onClick={handleNextCardWrongAnswer}>
                     <Image
-                      src="/assets/wrong.svg"
+                      src={
+                        clickedWrong
+                          ? "/assets/clicked-wrong.svg"
+                          : "/assets/wrong.svg"
+                      }
                       alt="dont know the answer"
                       width={60}
                       height={60}
@@ -128,7 +138,11 @@ export default function StartQuiz() {
                   </button>
                   <button onClick={handleNextCardRightAnswer}>
                     <Image
-                      src="/assets/right.svg"
+                      src={
+                        clickedRight
+                          ? "/assets/clicked-right.svg"
+                          : "/assets/right.svg"
+                      }
                       alt="know the answer"
                       width={60}
                       height={60}
