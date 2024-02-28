@@ -22,7 +22,7 @@ export default function HomePage() {
         </p>
       </div>
       <ul className="course-container">
-        {data.toReversed().map((course) => {
+        {data?.toReversed().map((course) => {
           return (
             <li className="field" key={course._id}>
               {/* Mapt über die Data der Coures in MongoDB */}

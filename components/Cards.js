@@ -17,7 +17,7 @@ export default function Cards() {
     <div className="course-container">
       {cards && (
         <>
-          {cards.toReversed().map(({ question, answer, _id }) => {
+          {cards?.toReversed().map(({ question, answer, _id }) => {
             return (
               <div className="field-card" key={_id}>
                 <div className="card-options">
