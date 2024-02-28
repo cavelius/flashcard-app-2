@@ -31,7 +31,10 @@ export default function Course({ name, description, id, length }) {
         </Link>
 
         <button>
-          <Link className="link-arrow" href={`/courses/${id}/start-quiz`}>
+          <Link
+            className="link-arrow"
+            href={length > 0 ? `/courses/${id}/start-quiz` : ""}
+          >
             <Image
               src="/assets/arrow.svg"
               alt="edit-and-delete-options"

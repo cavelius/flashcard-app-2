@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Link from "next/link";
 
-export default function AddForm({ onSubmit, formName, defaultData }) {
+export default function AddForm({ onSubmit, formName }) {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 
