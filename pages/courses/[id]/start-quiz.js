@@ -13,8 +13,7 @@ export default function StartQuiz() {
   const [wrongAnswers, setWrongAnswers] = useState([]);
   const [loadingBarWidth, setLoadingBarWidth] = useState(0);
   const [isFlipped, setIsFlipped] = useState(false); // Zustand für die Flip-Karte
-  const [clickedRight, setClickedRight] = useState(false);
-  const [clickedWrong, setClickedWrong] = useState(false);
+  const [clickedAnswer, setClickedAnswer] = useState(null);
 
   // loadingbar
   useEffect(() => {
@@ -26,62 +25,37 @@ export default function StartQuiz() {
 
   if (!course || !course.cards) return null;
 
-  const handleNextCardRightAnswer = () => {
-    setClickedRight(true); // Zustand aktualisieren
+  const handleNextCardAnswer = (isRight) => {
+    setClickedAnswer(isRight);
 
     setTimeout(() => {
-      setClickedRight(false); // Zustand nach 1 Sekunde zurücksetzen
+      setClickedAnswer(null);
 
-      if (currentCardIndex < course?.cards.length - 1) {
-        const currentCard = course.cards[currentCardIndex];
+      const currentCard = course.cards[currentCardIndex];
+      if (isRight) {
         setRightAnswers((prevRightAnswers) => [
           ...prevRightAnswers,
           currentCard,
         ]);
-        setCurrentCardIndex((prevIndex) => prevIndex + 1);
-        console.log("Clicked after delay");
       } else {
-        const currentCard = course.cards[currentCardIndex];
-        const updatedRightAnswers = [...rightAnswers, currentCard];
-        setRightAnswers(updatedRightAnswers);
-        router.push({
-          pathname: `/courses/${id}/finish-quiz`,
-          query: {
-            rightAnswers: JSON.stringify(updatedRightAnswers),
-            wrongAnswers: JSON.stringify(wrongAnswers),
-          },
-        });
-      }
-    }, 100); // Verzögerung für das Zurücksetzen des Zustands
-  };
-
-  const handleNextCardWrongAnswer = () => {
-    setClickedWrong(true); // Zustand aktualisieren
-
-    setTimeout(() => {
-      setClickedWrong(false); // Zustand nach 1 Sekunde zurücksetzen
-
-      if (currentCardIndex < course?.cards.length - 1) {
-        const currentCard = course.cards[currentCardIndex];
         setWrongAnswers((prevWrongAnswers) => [
           ...prevWrongAnswers,
           currentCard,
         ]);
+      }
+
+      if (currentCardIndex < course.cards.length - 1) {
         setCurrentCardIndex((prevIndex) => prevIndex + 1);
-        console.log("Clicked after delay");
       } else {
-        const currentCard = course.cards[currentCardIndex];
-        const updatedWrongAnswers = [...wrongAnswers, currentCard];
-        setWrongAnswers(updatedWrongAnswers);
         router.push({
           pathname: `/courses/${id}/finish-quiz`,
           query: {
             rightAnswers: JSON.stringify(rightAnswers),
-            wrongAnswers: JSON.stringify(updatedWrongAnswers),
+            wrongAnswers: JSON.stringify(wrongAnswers),
           },
         });
       }
-    }, 100); // Verzögerung für das Zurücksetzen des Zustands
+    }, 100);
   };
 
   const currentCard = course.cards[currentCardIndex];
@@ -124,10 +98,10 @@ export default function StartQuiz() {
               <h1 className="card-question-quiz">{answer}</h1>
               <div className="quiz-answer-and-btn">
                 <div className="answerButtons">
-                  <button onClick={handleNextCardWrongAnswer}>
+                  <button onClick={() => handleNextCardAnswer(false)}>
                     <Image
                       src={
-                        clickedWrong
+                        clickedAnswer === false
                           ? "/assets/clicked-wrong.svg"
                           : "/assets/wrong.svg"
                       }
@@ -136,10 +110,10 @@ export default function StartQuiz() {
                       height={60}
                     />
                   </button>
-                  <button onClick={handleNextCardRightAnswer}>
+                  <button onClick={() => handleNextCardAnswer(true)}>
                     <Image
                       src={
-                        clickedRight
+                        clickedAnswer === true
                           ? "/assets/clicked-right.svg"
                           : "/assets/right.svg"
                       }

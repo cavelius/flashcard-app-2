@@ -21,6 +21,7 @@ function Counter({ targetCount, className }) {
 }
 
 export default function FinishQuizPage() {
+  const router = useRouter();
   const { id } = useRouter().query;
   const { data: course, isLoading, error } = useSWR(`/api/courses/${id}`);
   const { rightAnswers, wrongAnswers } = useRouter().query;
@@ -40,6 +41,9 @@ export default function FinishQuizPage() {
 
   const wrong = JSON.parse(wrongAnswers);
   const right = JSON.parse(rightAnswers);
+
+  console.log("wrong Answers:", wrong);
+  console.log("right Answers", right);
 
   // Funktion um die falschen Frage noch einmal zu machen
   const redoQuiz = () => {
