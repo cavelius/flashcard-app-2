@@ -22,7 +22,6 @@ export default function CreateCard() {
     if (response.ok) {
       await response.json();
       router.push(`/courses/${id}`);
-      console.error(`Error: ${response.status}`);
     }
   }
 

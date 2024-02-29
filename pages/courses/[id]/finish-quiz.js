@@ -3,6 +3,7 @@ import useSWR from "swr";
 import Link from "next/link";
 import Logo from "@/components/Logo";
 import { useRouter } from "next/router";
+import ParticlesCannon from "@/components/Particles";
 
 function Counter({ targetCount, className }) {
   const [count, setCount] = useState(0);
@@ -66,6 +67,7 @@ export default function FinishQuizPage() {
 
   return (
     <>
+      {percentageRightAnswers === 100 ? <ParticlesCannon /> : null}
       <Logo />
       <div className="quiz-container">
         <div>
