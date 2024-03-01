@@ -28,6 +28,15 @@ export default function FinishQuizPage() {
   const { rightAnswers, wrongAnswers } = useRouter().query;
   const [parsedRightAnswers, setParsedRightAnswers] = useState([]);
   const [parsedWrongAnswers, setParsedWrongAnswers] = useState([]);
+  const [canShow, setCanShow] = useState(false);
+
+  // Set Time out
+  useEffect(() => {
+    const ms = 5 * 170;
+    console.log("milliseconds: ", ms);
+    const timer = setTimeout(() => setCanShow(true), ms);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     if (rightAnswers) {
@@ -67,7 +76,7 @@ export default function FinishQuizPage() {
 
   return (
     <>
-      {percentageRightAnswers === 100 ? <ParticlesCannon /> : null}
+      {percentageRightAnswers === 100 && canShow ? <ParticlesCannon /> : null}
       <Logo />
       <div className="quiz-container">
         <div>

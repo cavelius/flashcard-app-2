@@ -17,30 +17,32 @@ const ParticlesCannon = (props) => {
       //await loadAll(engine);
       //await loadFull(engine);
       // await loadSlim(engine);
-      await confetti("tsparticles", {
-        //------------------------------------------
-        angle: 90,
-        count: 90,
-        // life: {
-        //   count: 3,
-        //   duration: 0.5,
-        // },
-        position: {
-          x: 50,
-          y: 90,
-        },
-        spread: 45,
-        startVelocity: 45,
-        decay: 0.9,
-        gravity: 1,
-        drift: 0,
-        ticks: 200,
-        // colors: ["#ffffff", "#ff0000"],
-        // shapes: ["square", "circle"],
-        scalar: 1,
-        zIndex: 1000,
-        disableForReducedMotion: true,
-      });
+      // await confetti("tsparticles", {
+      //   fpsLimit: 60,
+      //   angle: 90,
+      //   count: 90,
+      //   // life: {
+      //   //   count: 3,
+      //   //   duration: 0.5,
+      //   // },
+      //   position: {
+      //     x: 50,
+      //     y: 90,
+      //   },
+      //   spread: 45,
+      //   startVelocity: 45,
+      //   delay: 0,
+      //   decay: 0.9,
+      //   gravity: 1,
+      //   drift: 0,
+      //   ticks: 200,
+      //   // colors: ["#ffffff", "#ff0000"],
+      //   // shapes: ["square", "circle"],
+      //   scalar: 1,
+      //   zIndex: 1000,
+      //   disableForReducedMotion: true,
+      // });
+      await confetti();
       //await loadBasic(engine);
     }).then(() => {
       setInit(true);
